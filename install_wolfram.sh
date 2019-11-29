@@ -20,6 +20,7 @@ if [[ $WE_MODE == "install" ]]; then
     echo "[1/5] Downloading..."
     wget -q -O "${install_script_name}" "https://wolfr.am/wolfram-engine-raspi-install"
     sed -i 's/sudo/false/g' "${install_script_name}"
+    cd /tmp #This is needed for a reason. See "Frequently Asked Questions" section of `README.md` for the detail.
     set +e
     bash -e "${install_script_name}" > /dev/null 2>&1 #Execute the script until the control reaches `apt`, which should fails.
     set -e
